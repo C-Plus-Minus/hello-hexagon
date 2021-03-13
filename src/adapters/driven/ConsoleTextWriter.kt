@@ -5,6 +5,6 @@ import core.port.driven.TextWriter
 
 class ConsoleTextWriter : TextWriter {
     override fun write(text: Text) {
-        println(text.value)
+        println("> ${text.value}")
     }
 }

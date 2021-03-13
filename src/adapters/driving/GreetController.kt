@@ -6,8 +6,8 @@ import adapters.driven.ConsoleTextWriter
 import core.component.greet.domain.events.GreetingPresented
 import core.component.greet.domain.events.GreetingWasRead
 import core.component.greet.domain.valueobject.Text
-import core.component.greet.handler.command.PresentGreetingTextHandler
-import core.component.greet.handler.command.ReadGreetingTextHandler
+import core.component.greet.commandhandler.PresentGreetingTextHandler
+import core.component.greet.commandhandler.ReadGreetingTextHandler
 import core.component.greet.usecase.PresentGreetingText
 import core.component.greet.usecase.ReadGreetingText
 import org.greenrobot.eventbus.Subscribe
@@ -35,14 +35,14 @@ internal class GreetController : MessageBusController(SimpleCommandBus(), Androi
 
     @Subscribe(threadMode = ThreadMode.MAIN_ORDERED)
     fun handle(event: GreetingWasRead) {
-        println("[LOG] Event arrived: GreetingWasRead")
+        println("(Event) GreetingWasRead")
 
-        commandBus.execute(PresentGreetingText(Text("Hello ${event.greeting?.value}")))
+        commandBus.execute(PresentGreetingText(Text("${event.subject.value}")))
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun handle(event: GreetingPresented) {
-        println("[LOG] Event arrived: GreetingPresented")
-        println("[DEBUG] How to forward any async answer to controller?")
+        println("(Event) GreetingPresented")
+        println("(Debug) How to forward any async answer to controller?")
     }
 }

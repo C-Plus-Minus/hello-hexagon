@@ -1,4 +1,4 @@
-package core.component.greet.handler.command
+package core.component.greet.commandhandler
 
 import core.component.CommandHandler
 import core.component.greet.domain.Command
