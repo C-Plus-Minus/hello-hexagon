@@ -5,10 +5,10 @@ import core.component.greet.domain.entity.Greeting
 import core.component.greet.domain.events.ReadGreetingStored
 import core.component.greet.domain.events.RestoredGreetingDisplayed
 import core.component.greet.domain.valueobject.Text
-import core.component.greet.handler.DisplayGreetingHandler
-import core.component.greet.handler.ReadGreetingHandler
+import core.component.greet.handler.DisplayGreetingTextHandler
+import core.component.greet.handler.ReadGreetingNameHandler
 import core.component.greet.usecase.DisplayGreetingText
-import core.component.greet.usecase.ReadGreetingText
+import core.component.greet.usecase.ReadGreetingName
 import core.port.driven.EventBus
 import core.port.driven.Repository
 import core.port.driven.TextReader
@@ -29,18 +29,18 @@ internal class GreetController(
 ) {
     init {
         commandBus.register(
-            ReadGreetingText::class.java,
-            ReadGreetingHandler(textReader, textWriter, greetingRepository)
+            ReadGreetingName::class.java,
+            ReadGreetingNameHandler(textReader, textWriter, greetingRepository)
         )
         commandBus.register(
             DisplayGreetingText::class.java,
-            DisplayGreetingHandler(textWriter, greetingRepository)
+            DisplayGreetingTextHandler(textWriter, greetingRepository)
         )
         eventBus.register(this)
     }
 
     fun getUserInput() {
-        commandBus.execute(ReadGreetingText(Text("Whom would you like to greet?")))
+        commandBus.execute(ReadGreetingName(Text("Whom would you like to greet?")))
 
         eventBus.unregister(this)
     }

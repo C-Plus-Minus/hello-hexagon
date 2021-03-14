@@ -9,7 +9,7 @@ import core.component.greet.usecase.DisplayGreetingText
 import core.port.driven.Repository
 import core.port.driven.TextWriter
 
-class DisplayGreetingHandler(
+class DisplayGreetingTextHandler(
     private val textWriter: TextWriter,
     private val greetingRepository: Repository<Greeting>
 ) : CommandHandler(
