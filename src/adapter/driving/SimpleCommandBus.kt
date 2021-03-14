@@ -1,4 +1,4 @@
-package adapters.driving
+package adapter.driving
 
 import core.component.CommandHandler
 import core.component.greet.domain.Command

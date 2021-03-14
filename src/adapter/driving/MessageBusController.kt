@@ -1,4 +1,4 @@
-package adapters.driving
+package adapter.driving
 
 import core.port.driven.EventBus
 import core.port.driving.CommandBus

@@ -1,4 +1,4 @@
-package adapters.driven
+package adapter.driven
 
 import core.component.greet.domain.valueobject.Text
 import core.port.driven.TextWriter
