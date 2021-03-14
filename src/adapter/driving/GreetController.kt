@@ -1,5 +1,6 @@
 package adapter.driving
 
+import core.component.greet.domain.Event
 import core.component.greet.domain.entity.Greeting
 import core.component.greet.domain.events.ReadGreetingStored
 import core.component.greet.domain.events.RestoredGreetingDisplayed
@@ -46,13 +47,21 @@ internal class GreetController(
 
     @Subscribe(threadMode = ThreadMode.MAIN_ORDERED)
     fun handle(event: ReadGreetingStored) {
-        println("(Event) $event")
+        log(event)
         commandBus.execute(DisplayGreetingText(event.id))
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun handle(event: RestoredGreetingDisplayed) {
+        log(event)
+        log("How to forward any async answer to controller?")
+    }
+
+    private fun log(event: Event) {
         println("(Event) $event")
-        println("(Debug) How to forward any async answer to controller?")
+    }
+
+    private fun log(message: String) {
+        println("(Debug) $message")
     }
 }
